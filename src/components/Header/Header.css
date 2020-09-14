@@ -8,7 +8,8 @@
 .nav {
   align-items: center;
   display: flex;
+  gap: 10px;
   height: 100%;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 

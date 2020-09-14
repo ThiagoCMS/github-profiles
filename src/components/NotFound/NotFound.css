@@ -1,0 +1,13 @@
+.not-found {
+  align-items: center;
+  background-color: #EDD8AD;
+  display: flex;
+  justify-content: center;
+  min-height: calc(100vh - 40px - 53px);
+}
+
+@media (max-width: 530px) {
+  .not-found img {
+    width: 40vw;
+  }
+}

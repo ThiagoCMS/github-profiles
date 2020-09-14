@@ -1,15 +1,30 @@
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 
+import { getUser, getRepos } from '../../../services/user';
+import UserContext from '../../../context/UserContext';
 import './Form.css';
 
 function Form() {
   const usernameRef = useRef();
+  const { setUser, setError } = useContext(UserContext);
 
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
-    // eslint-disable-next-line no-console
-    console.log('Form submit', usernameRef.current.value);
+    setUser({});
+    setError('');
+    const user = await getUser(usernameRef.current.value);
     usernameRef.current.value = '';
+    if (user.error) {
+      setError(user.error);
+      return;
+    }
+    const repos = await getRepos(user.login);
+    if (repos.error) {
+      setError(repos.error);
+      return;
+    }
+    user.repos = repos;
+    setUser(user);
   }
 
   return (

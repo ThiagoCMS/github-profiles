@@ -4,11 +4,11 @@ Aplicação para visualizar insformações do perfil de usuários do GitHub. Ide
 
 ## User Stories
 
--   [ ] User can enter a username
--   [ ] User can click on search button to retrieve information
--   [ ] User can see the avatar, username, followers and repository count of searched user
--   [ ] User can see the top 4 repositories of searched user
--   [ ] User should get an alert if the username is not valid
+-   [X] User can enter a username
+-   [X] User can click on search button to retrieve information
+-   [X] User can see the avatar, username, followers and repository count of searched user
+-   [X] User can see the top 4 repositories of searched user
+-   [X] User should get an alert if the username is not valid
 
 ## Bonus features
 -  [ ] User can toggle dark/light mode
