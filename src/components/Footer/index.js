@@ -11,6 +11,7 @@ const FooterBase = styled.footer`
 
 const Text = styled.p`
   color: #fff;
+  display: inline-block;
 `;
 
 function Footer() {
@@ -21,7 +22,9 @@ function Footer() {
         {' '}
         {'</>'}
         {' '}
-        by Thiago
+        by
+        {' '}
+        <Text as="a" href="https://github.com/ThiagoCMS" target="_blank">Thiago</Text>
       </Text>
     </FooterBase>
   );
