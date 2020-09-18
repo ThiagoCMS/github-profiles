@@ -1,8 +1,37 @@
 import React, { useContext, useRef } from 'react';
+import styled from 'styled-components';
 
 import { getUser, getRepos } from '../../../services/user';
 import UserContext from '../../../context/UserContext';
-import './Form.css';
+
+const FormInput = styled.input`
+  background-color: hsla(0,0%,100%,.125);
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: 400;
+  height: 28px;
+  margin-right: 5px;
+  padding: 0 3px;
+  width: 272px;
+
+  :focus {
+    outline: none;
+  }
+
+  @media(max-width: 440px) {
+    width: 50vw;
+  }
+`;
+
+const FormButton = styled.button`
+  background-color: hsla(0,0%,100%,.125);
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  height: 28px;
+  width: 75px;
+`;
 
 function Form() {
   const usernameRef = useRef();
@@ -28,9 +57,9 @@ function Form() {
   }
 
   return (
-    <form className="form" onSubmit={handleSubmit}>
-      <input className="input" type="text" name="username" id="username" placeholder="Search..." autoComplete="off" ref={usernameRef} />
-      <button className="search-button" type="submit">Search</button>
+    <form onSubmit={handleSubmit}>
+      <FormInput type="text" name="username" id="username" placeholder="Search..." autoComplete="off" ref={usernameRef} />
+      <FormButton type="submit">Search</FormButton>
     </form>
   );
 }
