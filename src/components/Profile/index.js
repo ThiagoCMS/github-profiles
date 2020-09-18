@@ -1,36 +1,97 @@
 import React, { useContext } from 'react';
+import styled from 'styled-components';
 
 import Repositories from './Repositories';
 import UserContext from '../../context/UserContext';
-import './Profile.css';
+
+const ProfileContainer = styled.div`
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 3fr 9fr;
+  min-height: calc(100vh - 53px - 40px);
+  padding: 20px 100px;
+
+  @media(max-width: 680px) {
+    grid-template-columns: 1fr;
+    padding: 20px 0;
+  }
+`;
+
+const ProfileInfo = styled.div`
+  grid-column: 1 / 2;
+
+  @media(max-width: 680px) {
+    justify-self: center;
+  }
+`;
+
+ProfileInfo.Img = styled.img`
+  border-radius: 50%;
+  height: 280px;
+  margin-bottom: 10px;
+  width: 280px;
+`;
+
+ProfileInfo.Name = styled.h2`
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.25;
+`;
+
+ProfileInfo.Username = styled.h3`
+  color: #666;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 24px;
+  margin-bottom: 10px;
+`;
+
+ProfileInfo.Count = styled.p`
+  color: #666;
+`;
+
+ProfileInfo.Counter = styled.span`
+  color: #24292e;
+  font-weight: 600;
+`;
+
+const RepositoriesContainer = styled.div`
+  grid-column: 2 / 3;
+
+  @media(max-width: 680px) {
+    grid-column: 1 / 2;
+  }
+`;
 
 function Profile() {
   const { user } = useContext(UserContext);
 
   return (
-    <section className="profile">
+    <ProfileContainer>
       {user && user.name
       && (
       <>
-        <div className="profile-info">
-          <img className="profile-img" src={user && user.avatar_url} alt="" />
-          <h2 className="profile-name">{user && user.name}</h2>
-          <h3 className="profile-username">{user && user.login}</h3>
-          <p className="profile-count">
+        <ProfileInfo>
+          <ProfileInfo.Img src={user && user.avatar_url} alt={`${user.name} profile image`} />
+          <ProfileInfo.Name>{user && user.name}</ProfileInfo.Name>
+          <ProfileInfo.Username>{user && user.login}</ProfileInfo.Username>
+          <ProfileInfo.Count>
             {' '}
-            <span className="counter">{user && user.followers}</span>
+            <ProfileInfo.Counter>{user && user.followers}</ProfileInfo.Counter>
             {' '}
             followers -
             {' '}
-            <span className="counter">{user && user.public_repos}</span>
+            <ProfileInfo.Counter>{user && user.public_repos}</ProfileInfo.Counter>
             {' '}
             repositories
-          </p>
-        </div>
-        <Repositories className="repositories" />
+          </ProfileInfo.Count>
+        </ProfileInfo>
+        <RepositoriesContainer>
+          <Repositories />
+        </RepositoriesContainer>
       </>
       )}
-    </section>
+    </ProfileContainer>
   );
 }
 
