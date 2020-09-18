@@ -12,6 +12,7 @@ export async function getUser(user) {
       name: data.name,
       public_repos: data.public_repos,
       followers: data.followers,
+      url: data.html_url,
     };
   } catch (error) {
     return { error: 'user not found' };
@@ -24,11 +25,17 @@ export async function getRepos(user) {
     const response = await fetch(reposUrl);
     const data = await response.json();
     const repos = await data.map(async (repo) => {
-      if (repo.language) return { id: repo.id, name: repo.name, language: repo.language, url: repo.html_url };
+      if (repo.language) {
+        return {
+          id: repo.id, name: repo.name, language: repo.language, url: repo.html_url,
+        };
+      }
       const languageData = await fetch(repo.languages_url);
       const languages = await languageData.json();
       const language = Object.keys(languages).length > 0 ? Object.keys(languages).reduce((a, b) => (languages[a] > languages[b] ? a : b)) : '';
-      return { id: repo.id, name: repo.name, language, url: repo.html_url };
+      return {
+        id: repo.id, name: repo.name, language, url: repo.html_url,
+      };
     });
     const result = await Promise.all(repos);
     return result;

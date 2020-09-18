@@ -44,6 +44,11 @@ ProfileInfo.Username = styled.h3`
   font-weight: 300;
   line-height: 24px;
   margin-bottom: 10px;
+  text-decoration: none;
+
+  :hover {
+    text-decoration: underline;
+  }
 `;
 
 ProfileInfo.Count = styled.p`
@@ -74,7 +79,7 @@ function Profile() {
         <ProfileInfo>
           <ProfileInfo.Img src={user && user.avatar_url} alt={`${user.name} profile image`} />
           <ProfileInfo.Name>{user && user.name}</ProfileInfo.Name>
-          <ProfileInfo.Username>{user && user.login}</ProfileInfo.Username>
+          <ProfileInfo.Username as="a" href={user.url} target="_blank">{user && user.login}</ProfileInfo.Username>
           <ProfileInfo.Count>
             {' '}
             <ProfileInfo.Counter>{user && user.followers}</ProfileInfo.Counter>
