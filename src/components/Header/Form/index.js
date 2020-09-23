@@ -40,8 +40,9 @@ function Form() {
   async function handleSubmit(event) {
     event.preventDefault();
     dispatch({ type: 'FETCH_INIT' });
-    const user = await getUser(usernameRef.current.value);
+    const { value } = usernameRef.current;
     usernameRef.current.value = '';
+    const user = await getUser(value);
     if (user.error) {
       dispatch({ type: 'FETCH_FAIL' });
       return;
