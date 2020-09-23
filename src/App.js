@@ -1,23 +1,15 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 
 import Home from './pages/Home';
 import { UserProvider } from './context/UserContext';
+import { INITIAL_STATE, reducer } from './reducers/userReducer';
 
 function App() {
-  const [user, setUserState] = useState({});
-  const [error, setErrorState] = useState('');
-
-  function setUser(newUser) {
-    setUserState(newUser);
-  }
-
-  function setError(newError) {
-    setErrorState(newError);
-  }
+  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
 
   return (
     <UserProvider value={{
-      user, setUser, error, setError,
+      state, dispatch,
     }}
     >
       <Home />

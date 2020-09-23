@@ -35,25 +35,24 @@ const FormButton = styled.button`
 
 function Form() {
   const usernameRef = useRef();
-  const { setUser, setError } = useContext(UserContext);
+  const { dispatch } = useContext(UserContext);
 
   async function handleSubmit(event) {
     event.preventDefault();
-    setUser({});
-    setError('');
+    dispatch({ type: 'FETCH_INIT' });
     const user = await getUser(usernameRef.current.value);
     usernameRef.current.value = '';
     if (user.error) {
-      setError(user.error);
+      dispatch({ type: 'FETCH_FAIL' });
       return;
     }
     const repos = await getRepos(user.login);
     if (repos.error) {
-      setError(repos.error);
+      dispatch({ type: 'FETCH_FAIL' });
       return;
     }
     user.repos = repos;
-    setUser(user);
+    dispatch({ type: 'FETCH_SUCCESS', payload: user });
   }
 
   return (

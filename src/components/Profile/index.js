@@ -69,7 +69,8 @@ const RepositoriesContainer = styled.div`
 `;
 
 function Profile() {
-  const { user } = useContext(UserContext);
+  const { state } = useContext(UserContext);
+  const { user } = state;
 
   return (
     <ProfileContainer>

@@ -7,12 +7,13 @@ import Footer from '../../components/Footer';
 import UserContext from '../../context/UserContext';
 
 function Home() {
-  const { error } = useContext(UserContext);
+  const { state } = useContext(UserContext);
+  const { hasError } = state;
 
   return (
     <>
       <Header />
-      {error ? <NotFound /> : <Profile />}
+      {hasError ? <NotFound /> : <Profile />}
       <Footer />
     </>
   );

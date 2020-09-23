@@ -1,10 +1,8 @@
 import { createContext } from 'react';
 
 const INITIAL_CONTEXT = {
-  user: {},
-  setUser: () => {},
-  error: '',
-  setError: () => {},
+  state: undefined,
+  dispatch: () => {},
 };
 
 const UserContext = createContext(INITIAL_CONTEXT);

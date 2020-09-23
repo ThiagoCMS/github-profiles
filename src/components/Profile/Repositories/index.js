@@ -44,7 +44,8 @@ RepositoryBox.Language = styled.h4`
 `;
 
 function Repositories() {
-  const { user } = useContext(UserContext);
+  const { state } = useContext(UserContext);
+  const { user } = state;
 
   return (
     <RepositoriesContainer>
