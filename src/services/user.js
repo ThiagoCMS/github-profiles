@@ -7,6 +7,7 @@ export async function getUser(user) {
     if (response.status !== 200) throw new Error(response);
     const data = await response.json();
     return {
+      id: data.id,
       login: data.login,
       avatar_url: data.avatar_url,
       name: data.name,

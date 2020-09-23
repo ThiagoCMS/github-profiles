@@ -74,7 +74,7 @@ function Profile() {
 
   return (
     <ProfileContainer>
-      {user && user.name
+      {user && user.id
       && (
       <>
         <ProfileInfo>
