@@ -15,13 +15,11 @@ const HeaderContainer = styled.header`
   padding: 0 16px;
 `;
 
-function Header() {
-  return (
-    <HeaderContainer>
-      <img src={Logo} alt="GitHub Logo" />
-      <Form />
-    </HeaderContainer>
-  );
-}
+const Header = React.memo(() => (
+  <HeaderContainer>
+    <img src={Logo} alt="GitHub Logo" />
+    <Form />
+  </HeaderContainer>
+));
 
 export default Header;

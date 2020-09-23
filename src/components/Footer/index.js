@@ -14,20 +14,18 @@ const Text = styled.p`
   display: inline-block;
 `;
 
-function Footer() {
-  return (
-    <FooterBase>
-      <Text>
-        Made with
-        {' '}
-        {'</>'}
-        {' '}
-        by
-        {' '}
-        <Text as="a" href="https://github.com/ThiagoCMS" target="_blank">Thiago</Text>
-      </Text>
-    </FooterBase>
-  );
-}
+const Footer = React.memo(() => (
+  <FooterBase>
+    <Text>
+      Made with
+      {' '}
+      {'</>'}
+      {' '}
+      by
+      {' '}
+      <Text as="a" href="https://github.com/ThiagoCMS" target="_blank">Thiago</Text>
+    </Text>
+  </FooterBase>
+));
 
 export default Footer;
