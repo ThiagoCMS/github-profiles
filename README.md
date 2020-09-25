@@ -11,5 +11,5 @@ Aplicação para visualizar insformações do perfil de usuários do GitHub. Ide
 -   [X] User should get an alert if the username is not valid
 
 ## Bonus features
--  [ ] User can toggle dark/light mode
--  [ ] Selected mode should persist when user comes back to the app again
+-  [X] User can toggle dark/light mode
+-  [X] Selected mode should persist when user comes back to the app again

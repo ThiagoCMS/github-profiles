@@ -3,6 +3,7 @@ import styled from 'styled-components';
 
 import Logo from '../../assets/GitHub-Mark-Light-32px.png';
 import Form from './Form';
+import ThemeSwitcher from './ThemeSwitcher';
 
 const HeaderContainer = styled.header`
   align-items: center;
@@ -19,6 +20,7 @@ const Header = React.memo(() => (
   <HeaderContainer>
     <img src={Logo} alt="GitHub Logo" />
     <Form />
+    <ThemeSwitcher />
   </HeaderContainer>
 ));
 

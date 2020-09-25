@@ -1,18 +1,24 @@
-import React, { useReducer } from 'react';
+import React from 'react';
 
 import Home from './pages/Home';
+import useReducer from './hooks/useReducer';
 import { UserProvider } from './context/UserContext';
-import { INITIAL_STATE, reducer } from './reducers/userReducer';
+import { ThemeProvider } from './context/ThemeContext';
+import userReducer from './reducers/userReducer';
+import themeReducer from './reducers/themeReducer';
 
 function App() {
-  const [state, dispatch] = useReducer(reducer, INITIAL_STATE);
+  const [userState, userDispatch] = useReducer(userReducer);
+  const [themeState, themeDispatch] = useReducer(themeReducer);
 
   return (
     <UserProvider value={{
-      state, dispatch,
+      state: userState, dispatch: userDispatch,
     }}
     >
-      <Home />
+      <ThemeProvider value={{ state: themeState, dispatch: themeDispatch }}>
+        <Home />
+      </ThemeProvider>
     </UserProvider>
   );
 }

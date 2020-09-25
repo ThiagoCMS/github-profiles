@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import styled, { keyframes } from 'styled-components';
+
+import ThemeContext from '../../context/ThemeContext';
 
 const LoaderContainer = styled.div`
   align-items: center;
+  background-color: ${(props) => (props.theme === 'light' ? 'hsl(0, 0%, 100%)' : 'hsl(210, 12%, 12%)')};
   display: flex;
   height: calc(100vh - 53px - 40px);
   justify-content: center;
@@ -29,8 +32,10 @@ const LoaderSpinner = styled.span`
 `;
 
 function Loader() {
+  const { state: { theme } } = useContext(ThemeContext);
+
   return (
-    <LoaderContainer>
+    <LoaderContainer theme={theme}>
       <LoaderSpinner />
     </LoaderContainer>
   );

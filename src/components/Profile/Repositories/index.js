@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 
 import UserContext from '../../../context/UserContext';
+import ThemeContext from '../../../context/ThemeContext';
 
 const RepositoriesContainer = styled.div`
   display: grid;
@@ -18,7 +19,7 @@ const RepositoriesContainer = styled.div`
 `;
 
 const RepositoryBox = styled.div`
-  border: 1px solid #e1e4e8;
+  border: ${(props) => (props.theme === 'light' ? '1px solid #e1e4e8' : '2px solid hsl(0, 0%, 35%)')};
   border-radius: 6px;
   display: flex;
   flex-direction: column;
@@ -27,7 +28,7 @@ const RepositoryBox = styled.div`
 `;
 
 RepositoryBox.Name = styled.h3`
-  color: #0366d6;
+  color: ${(props) => (props.theme === 'light' ? '#0366d6' : 'hsl(215, 100%, 60%)')};
   font-weight: 600;
   font-size: 14px;
   text-decoration: none;
@@ -38,21 +39,21 @@ RepositoryBox.Name = styled.h3`
 `;
 
 RepositoryBox.Language = styled.h4`
-  color: #586069;
+  color: ${(props) => (props.theme === 'light' ? '#586069' : 'hsl(0, 0%, 70%)')};
   font-weight: 400;
   font-size: 12px;
 `;
 
 function Repositories() {
-  const { state } = useContext(UserContext);
-  const { user } = state;
+  const { state: { user } } = useContext(UserContext);
+  const { state: { theme } } = useContext(ThemeContext);
 
   return (
     <RepositoriesContainer>
       {user.repos.map((repo) => (
-        <RepositoryBox key={repo.id}>
-          <RepositoryBox.Name as="a" href={repo.url} target="_blank">{repo.name}</RepositoryBox.Name>
-          <RepositoryBox.Language>{repo.language}</RepositoryBox.Language>
+        <RepositoryBox theme={theme} key={repo.id}>
+          <RepositoryBox.Name theme={theme} as="a" href={repo.url} target="_blank">{repo.name}</RepositoryBox.Name>
+          <RepositoryBox.Language theme={theme}>{repo.language}</RepositoryBox.Language>
         </RepositoryBox>
       ))}
     </RepositoriesContainer>
